@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os
 import numpy as np
-from scipy.ndimage import imread
+import matplotlib.image as img
 from scipy.spatial.distance import cdist
 
 
@@ -94,7 +94,9 @@ def load_img_as_points(filename):
     # Output:
     #  D : [n x 2] rows are coordinates
     #
-    I = imread(filename, flatten=True)
+    # imread was moved to matplotlib
+    I = img.imread(filename)
+    I.flatten()
     # Convert to boolean array and invert the pixel values
     I = ~np.array(I, dtype=np.bool)
     # Create a new array of all the non-zero element coordinates
